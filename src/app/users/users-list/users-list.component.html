@@ -1,21 +1,13 @@
-<p>users-list works!</p>
-
-<app-loader *ngIf="!users"></app-loader>
-<div *ngIf="users" class="row">
-  <div *ngFor="let user of users" class="col-12 col-sm-6 col-md-4">
-    <div class="card">
-      <img
-        [src]="user.avatar"
-        class="card-img-top"
-        alt="{{ user.firstName + ' ' + user.lastName }}"
-      />
-      <div class="card-body">
-        <h5 class="card-title">{{ user.firstName }} {{ user.lastName }}</h5>
-        <p class="card-text">{{ user.lastName }}</p>
-        <a routerLink="{{ user.id }}" class="btn btn-primary btn-block"
-          >Preview</a
-        >
-      </div>
-    </div>
+<app-loader [isFixed]="true" *ngIf="isLoading"></app-loader>
+<div *ngIf="!isLoading && isError" class="alert alert-danger" role="alert">
+  Users loading failed!
+</div>
+<div *ngIf="!isLoading && users" class="row">
+  <div *ngFor="let userCardData of users" class="col-12 col-sm-6 col-md-4">
+    <app-card 
+      [cardData]="userCardData"
+      [imgClass]="userCardData"
+      [redirectTo]="userCardData.id"
+     ></app-card>
   </div>
 </div>

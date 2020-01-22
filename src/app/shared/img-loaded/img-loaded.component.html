@@ -1,0 +1,6 @@
+<div *ngIf="isLoading" class="img-loaded">
+    <app-loader></app-loader>
+</div>
+
+<img [src]="imgSrc" class="{{ imgClass }}" alt="{{ imgAlt }}"/>
+<img *ngIf="isLoading"[hidden]="!isLoading" [src]="imgSrc" (load)="onLoad()" />

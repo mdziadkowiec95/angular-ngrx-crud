@@ -1,2 +1,7 @@
+<app-loader [isFixed]="true" *ngIf="isLoading"></app-loader>
+
 <a routerLink="/users" class="btn btn-outline-dark">Back</a>
-<p>user-details works!</p>
+
+<div *ngIf="user">
+    <h2>{{ user.firstName }}</h2>
+</div>

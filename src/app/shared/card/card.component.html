@@ -1,0 +1,10 @@
+<div class="card">
+    <app-img-loaded [imgSrc]="cardData.imgSrc" [imgClass]="'card-img-top'" [imgAlt]="cardData.title"></app-img-loaded>
+    <div class="card-body">
+        <h5 class="card-title">{{ cardData.title }}</h5>
+        <ng-content></ng-content>
+        <a *ngIf="redirectTo" routerLink="{{ redirectTo }}" class="btn btn-outline-dark btn-block"
+          >Preview</a
+        >
+    </div>
+</div>

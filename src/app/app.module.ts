@@ -1,19 +1,23 @@
-import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from "./app-routing.module";
-import { AppComponent } from "./app.component";
-import { StoreModule } from "@ngrx/store";
-import { reducers, metaReducers } from "./store/app.reducer";
-import { StoreDevtoolsModule } from "@ngrx/store-devtools";
-import { environment } from "../environments/environment";
-import { HttpClientInMemoryWebApiModule } from "angular-in-memory-web-api";
-import { InMemoryDataService } from "./in-memory-database/in-memory-data.service";
-import { HttpClientModule } from "@angular/common/http";
-import { UsersComponent } from "./users/users.component";
-import { UsersListComponent } from "./users/users-list/users-list.component";
-import { LoaderComponent } from "./shared/components/loader/loader.component";
-import { UserDetailsComponent } from "./users/user-details/user-details.component";
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './store/app.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './in-memory-database/in-memory-data.service';
+import { HttpClientModule } from '@angular/common/http';
+import { UsersComponent } from './users/users.component';
+import { UsersListComponent } from './users/users-list/users-list.component';
+import { LoaderComponent } from './shared/components/loader/loader.component';
+import { UserDetailsComponent } from './users/user-details/user-details.component';
+import { EffectsModule } from '@ngrx/effects';
+import { UsersEffects } from './users/store/users.effects';
+import { ImgLoadedComponent } from './shared/img-loaded/img-loaded.component';
+import { CardComponent } from './shared/card/card.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,9 @@ import { UserDetailsComponent } from "./users/user-details/user-details.componen
     UsersComponent,
     UsersListComponent,
     LoaderComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    ImgLoadedComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +46,8 @@ import { UserDetailsComponent } from "./users/user-details/user-details.componen
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production
-    })
+    }),
+    EffectsModule.forRoot([UsersEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]
