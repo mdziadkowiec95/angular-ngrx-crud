@@ -16,10 +16,14 @@ import { LoaderComponent } from './shared/components/loader/loader.component';
 import { UserDetailsComponent } from './users/user-details/user-details.component';
 import { EffectsModule } from '@ngrx/effects';
 import { UsersEffects } from './users/store/users.effects';
-import { ImgLoadedComponent } from './shared/img-loaded/img-loaded.component';
-import { CardComponent } from './shared/card/card.component';
-
-@NgModule({
+import { ImgLoadedComponent } from './shared/components/img-loaded/img-loaded.component';
+import { CardComponent } from './shared/components/card/card.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { DataTableComponent } from './shared/components/data-table/data-table.component';
+import { CarsComponent } from './cars/cars.component';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
+import { CarsListComponent } from './cars/cars-list/cars-list.component';
+@NgModule({ 
   declarations: [
     AppComponent,
     UsersComponent,
@@ -27,7 +31,11 @@ import { CardComponent } from './shared/card/card.component';
     LoaderComponent,
     UserDetailsComponent,
     ImgLoadedComponent,
-    CardComponent
+    CardComponent,
+    DataTableComponent,
+    CarsComponent,
+    NavbarComponent,
+    CarsListComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +55,8 @@ import { CardComponent } from './shared/card/card.component';
       maxAge: 25,
       logOnly: environment.production
     }),
-    EffectsModule.forRoot([UsersEffects])
+    EffectsModule.forRoot([UsersEffects]),
+    NgxDatatableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

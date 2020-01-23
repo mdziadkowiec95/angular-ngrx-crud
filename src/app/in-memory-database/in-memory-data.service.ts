@@ -1,13 +1,14 @@
 import { InMemoryDbService } from "angular-in-memory-web-api";
 import { Injectable } from "@angular/core";
 import { usersCollection as users } from "./users.collection";
+import { carsCollection as cars } from './cars.collections';
 
 @Injectable({
   providedIn: "root"
 })
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
-    return { users };
+    return { users, cars };
   }
 
   // Overrides the genId method to ensure that a hero always has an id.
