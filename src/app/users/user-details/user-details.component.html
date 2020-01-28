@@ -1,7 +1,47 @@
 <app-loader [isFixed]="true" *ngIf="isLoading"></app-loader>
 
-<a routerLink="/users" class="btn btn-outline-dark">Back</a>
+<div *ngIf="!isLoading">
+  <a routerLink="/users" class="btn btn-outline-dark">Back</a>
 
-<div *ngIf="user">
+  <div *ngIf="user">
     <h2>{{ user.firstName }}</h2>
+  </div>
+
+  <form [formGroup]="userEditForm">
+    <div class="form-group">
+      <label for="userFirstName">First name:</label>
+      <input
+        type="text"
+        formControlName="firstName"
+        class="form-control"
+        id="userFirstName"
+      />
+    </div>
+    <div class="form-group">
+      <label for="userLastName">Last name:</label>
+      <input
+        type="text"
+        formControlName="lastName"
+        class="form-control"
+        id="userLastName"
+      />
+    </div>
+    <div class="form-group">
+      <label for="userCar">Select car:</label>
+      <select
+        formControlName="car"
+        class="form-control"
+        id="userCar"
+        (change)="onCarChange($event.target.value)"
+      >
+        <option value="">Select car</option>
+        <option *ngFor="let car of availableCars" [value]="car.id">{{
+          car.name
+        }}</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+  <div>{{ userEditForm.value | json }}</div>
 </div>
